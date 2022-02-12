@@ -1,1 +1,9 @@
-<p>home works!</p>
+<div>
+  <h1>Pokedex</h1>
+
+  <div *ngFor="let pokemon of allPokemons" >
+    <h2>{{pokemon.name}}</h2>
+  </div>
+
+  <button (click)="nextPage()">Next</button>
+</div>
