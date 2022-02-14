@@ -1,9 +1,10 @@
 <div>
   <h1>Pokedex</h1>
 
-  <div *ngFor="let pokemon of allPokemons" >
+  <div *ngFor="let pokemon of this.service.allPokemons" >
     <h2>{{pokemon.name}}</h2>
+    <img src={{pokemon.sprites.front_default}} alt={{pokemon.name}}>
   </div>
 
-  <button (click)="nextPage()">Next</button>
+  <button (click)="this.service.getPokemonsData()">Next</button>
 </div>

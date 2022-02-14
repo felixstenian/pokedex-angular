@@ -8,28 +8,12 @@ import { HomeService } from '../home.service';
 })
 export class HomeComponent implements OnInit {
 
-  allPokemons: Array<any> = []
-  link: string = 'https://pokeapi.co/api/v2/pokemon-form'
-
   constructor(
-    private service: HomeService
+    public service: HomeService
   ) { }
 
   ngOnInit(): void {
-    this.service.getPokemons(this.link).subscribe((response) => {
-      // console.log(response)
-      this.allPokemons.push(...response.results)
-      this.link = response.next
-    })
-    console.log(this.link)
-    console.log(this.allPokemons)
-  }
-
-  nextPage () {
-    this.service.getPokemons(this.link).subscribe((response: any) => {
-      this.allPokemons.push(...response?.results)
-      this.link = response.next
-    })
+    this.service.getPokemonsData()
   }
 
 }
