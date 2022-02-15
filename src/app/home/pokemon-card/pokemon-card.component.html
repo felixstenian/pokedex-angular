@@ -1,0 +1,8 @@
+<div class="card-content">
+  <div *ngFor="let pokemon of this.service.allPokemons" class="item">
+    <a [routerLink]="['/pokemon']" [queryParams]="{ name: pokemon.name }">
+      <img src={{pokemon.sprites.front_default}} alt={{pokemon.name}}>
+      <h2>{{pokemon.name}}</h2>
+    </a>
+  </div>
+</div>

@@ -1,11 +1,10 @@
-<div class="container">
-  <h1>Pokedex</h1>
+<div class="container-main">
+  <header>
+    <h1>Pokedex</h1>
+  </header>
 
-  <div class="content">
-    <div *ngFor="let pokemon of this.service.allPokemons" class="item">
-      <img src={{pokemon.sprites.front_default}} alt={{pokemon.name}}>
-      <h2>{{pokemon.name}}</h2>
-    </div>
+  <div>
+    <app-pokemon-card></app-pokemon-card>
   </div>
 
   <button (click)="this.service.getPokemonsData()">Ver mais</button>

@@ -3,18 +3,21 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
+import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    PokemonCardComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule
   ],
   exports: [
-    HomeComponent
+    HomeComponent,
+    PokemonCardComponent
   ]
 })
 export class HomeModule { }
