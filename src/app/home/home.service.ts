@@ -8,25 +8,37 @@ import { Observable } from 'rxjs';
 export class HomeService {
 
   allPokemons: Array<any> = []
-  staticLink: string = 'https://pokeapi.co/api/v2/pokemon-form'
-  dinamicLink: string = 'https://pokeapi.co/api/v2/pokemon-form'
+  private staticLink: string = 'https://pokeapi.co/api/v2/pokemon-form'
+  private dinamicLink: string = ''
 
   constructor(
     private httpCliente: HttpClient
   ) { }
 
-  getPokemons(url: string): Observable<any>{
+  getPokemonsData () {
+    this.getPokemons(this.staticLink).subscribe(response => {
+      this.dinamicLink = response?.next
+      this.allPokemons = []
+      this.listPokemons(response)
+    })
+  }
+
+  getPokemonsDataMore () {
+    this.getPokemons(this.dinamicLink).subscribe(response => {
+      this.dinamicLink = response?.next
+      this.listPokemons(response)
+    })
+  }
+
+  private getPokemons(url: string): Observable<any>{
     return this.httpCliente.get(url)
   }
 
-  getPokemonsData () {
-    this.getPokemons(this.dinamicLink).subscribe(response => {
-      this.dinamicLink = response?.next
-      response?.results?.map((pokemon: any) => {
-        this.httpCliente.get(`${this.staticLink}/${pokemon.name}`).subscribe((data: any) => {
-          const { name, sprites } = data
-          this.allPokemons.push({ name, sprites })
-        })
+  private listPokemons (response: any) {
+    response?.results?.map((pokemon: any) => {
+      this.httpCliente.get(`${this.staticLink}/${pokemon.name}`).subscribe((data: any) => {
+        const { name, sprites } = data
+        this.allPokemons.push({ name, sprites })
       })
     })
   }

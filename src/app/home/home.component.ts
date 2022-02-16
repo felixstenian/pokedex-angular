@@ -16,4 +16,8 @@ export class HomeComponent implements OnInit {
     this.service.getPokemonsData()
   }
 
+  handleMore () {
+    this.service.getPokemonsDataMore()
+  }
+
 }
