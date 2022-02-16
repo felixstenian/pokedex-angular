@@ -1,1 +1,34 @@
-<p>pokemon works!</p>
+<div class="container-profile">
+  <main class="content">
+    <header>
+      <h1>{{pokemonData.name}}</h1>
+      <h2># {{pokemonData.order}}</h2>
+    </header>
+
+    <div class="types">
+      <ul>
+        <li *ngFor="let type of pokemonData.types" >
+          {{ type.type.name }}
+        </li>
+      </ul>
+    </div>
+
+    <section>
+      <div class="fotos">
+        <img src={{pokemonData?.sprites.front_default}} alt={{pokemonData.name}}>
+      </div>
+
+      <div class="starts">
+        <ul>
+          <li *ngFor="let stat of pokemonData.stats" >
+            {{stat.stat.name}} - {{stat.base_stat}}
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <p>
+    <a [routerLink]="['/home']">Voltar</a>
+  </p>
+</div>

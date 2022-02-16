@@ -1,5 +1,7 @@
+import { PokemonService } from './pokemon.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Pokemon } from './pokemon';
 
 @Component({
   selector: 'app-pokemon',
@@ -8,13 +10,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PokemonComponent implements OnInit {
 
+  pokemonData: any = {}
+
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private service: PokemonService
   ) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params: any) => {
-      console.log(params)
+    this.route.queryParams.subscribe(({ name }: any) => {
+      this.service.getPokemonData(name).subscribe((response: Pokemon) => {
+        this.pokemonData = response
+      })
     })
   }
 
