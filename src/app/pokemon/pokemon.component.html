@@ -11,7 +11,7 @@
   <main class="content">
     <div class="types">
       <ul>
-        <li *ngFor="let type of pokemonData.types | async" >
+        <li *ngFor="let type of pokemonData.types" >
           {{ type.type.name }}
         </li>
       </ul>
@@ -24,7 +24,7 @@
 
       <div class="starts">
         <ul>
-          <li *ngFor="let stat of pokemonData.stats | async" >
+          <li *ngFor="let stat of pokemonData.stats" >
             <div class="stat">{{stat.stat.name}}</div>
             <div class="value">{{stat.base_stat}}</div>
           </li>
