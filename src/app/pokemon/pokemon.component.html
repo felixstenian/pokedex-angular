@@ -1,13 +1,17 @@
 <div class="container-profile">
-  <main class="content">
-    <header>
+  <header>
+    <div class="header">
+      <p>
+        <a [routerLink]="['/home']">Voltar</a>
+      </p>
       <h1>{{pokemonData.name}}</h1>
-      <h2># {{pokemonData.order}}</h2>
-    </header>
-
+      <h1># {{pokemonData.order}}</h1>
+    </div>
+  </header>
+  <main class="content">
     <div class="types">
       <ul>
-        <li *ngFor="let type of pokemonData.types" >
+        <li *ngFor="let type of pokemonData.types | async" >
           {{ type.type.name }}
         </li>
       </ul>
@@ -20,15 +24,12 @@
 
       <div class="starts">
         <ul>
-          <li *ngFor="let stat of pokemonData.stats" >
-            {{stat.stat.name}} - {{stat.base_stat}}
+          <li *ngFor="let stat of pokemonData.stats | async" >
+            <div class="stat">{{stat.stat.name}}</div>
+            <div class="value">{{stat.base_stat}}</div>
           </li>
         </ul>
       </div>
     </section>
   </main>
-
-  <p>
-    <a [routerLink]="['/home']">Voltar</a>
-  </p>
 </div>
